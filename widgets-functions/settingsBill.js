@@ -75,6 +75,7 @@ function BillWithSettings() {
             return 'critical'
         }
 
+
         if (getTotalCost() >= getWarningLevel()) {
             return 'warning'
         }
@@ -95,6 +96,7 @@ function BillWithSettings() {
         getTotalCost,
         makeCall,
         sendSms,
+
         totalClassName
 
     }

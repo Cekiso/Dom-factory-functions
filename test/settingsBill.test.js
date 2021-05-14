@@ -194,5 +194,30 @@ describe('use values', function() {
 
 
         });
+        it('should allow the total to increaseafter reashing the critical level & then upping the critical level', function() {
+            let settingsBill = BillWithSettings();
+
+            settingsBill.setCriticalLevel(10);
+            settingsBill.setCallCost(2.50);
+            settingsBill.setSmsCost(0.85);
+            settingsBill.setWarningLevel(10);
+
+            settingsBill.makeCall();
+            settingsBill.makeCall();
+            settingsBill.makeCall();
+            settingsBill.makeCall();
+            settingsBill.makeCall();
+
+
+            assert.equal('critical', settingsBill.totalClassName());
+
+
+            settingsBill.setWarningLevel(20);
+            assert.equal('critical', settingsBill.totalClassName());
+            settingsBill.makeCall();
+            settingsBill.makeCall();
+            assert.equal('critical', settingsBill.totalClassName());
+
+        });
     });
 });
