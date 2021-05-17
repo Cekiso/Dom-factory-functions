@@ -16,41 +16,29 @@ var totalBillTotal = 0;
 // * display the latest total on the screen
 
 
+var radioBillinstance = txtBill();
 
 function radioBillTotal() {
 
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     if (checkedRadioBtn) {
-        var billItemEntered = checkedRadioBtn.value
-            // billItemType will be 'call' or 'sms'
 
-        // get the value entered in the billType textfield
-        // var billItemEntered = billItemTypeRadio.value;
-        var bill = billItemEntered.trim();
-        // update the correct total
-        if (bill === "call") {
-            callBillTotal += 2.75;
-            totalBillTotal += 2.75;
-            // console.log(callTwo)
-        } else if (bill === "sms") {
-            smsBillTotal += 0.75;
-            totalBillTotal += 0.75;
-            // console.log(smsTwo)
+        radioBillinstance.calcBill(checkedRadioBtn.value)
 
-        }
-        // //color the total based on the criteria
-        if (totalBillTotal >= 30 && totalBillTotal < 50) {
-            // adding the danger class will make the text red
-            TotalTwo.classList.add("warning");
+    }
+    // //color the total based on the criteria
+    if (radioBillinstance.TotalCost() >= 30 && radioBillinstance.TotalCost() < 50) {
+        // adding the danger class will make the text red
+        TotalTwo.classList.add("warning");
 
-        } else if (totalBillTotal >= 50) {
-            TotalTwo.classList.add("danger");
-            //totalBillTotal.classList.remove("danger");
-        }
+    } else if (radioBillinstance.TotalCost() >= 50) {
+        TotalTwo.classList.add("danger");
+        //totalBillTotal.classList.remove("danger");
     }
 
-    callTotalTwo.innerHTML = callBillTotal.toFixed(2);
-    smsTotalTwo.innerHTML = smsBillTotal.toFixed(2);
-    TotalTwo.innerHTML = totalBillTotal.toFixed(2);
+
+    callTotalTwo.innerHTML = radioBillinstance.callCost().toFixed(2);
+    smsTotalTwo.innerHTML = radioBillinstance.smsCost().toFixed(2);
+    TotalTwo.innerHTML = radioBillinstance.TotalCost().toFixed(2);
 }
 radioBillAddBtn.addEventListener('click', radioBillTotal);

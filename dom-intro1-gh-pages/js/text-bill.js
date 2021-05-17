@@ -11,38 +11,30 @@ var sms = 0;
 var call = 0;
 var total = 0;
 
+var txtBillinstance = txtBill();
 //add an event listener for when the add button is pressed
 function textBillTotal() {
 
-    // get the value entered in the billType textfield
-    var billTypeEntered = billTypeText.value;
-    var bill = billTypeEntered.trim();
-    // update the correct totarl
-    if (bill === "call") {
-        call += 2.75;
-        total += 2.75;
-        console.log(call)
-    } else if (bill === "sms") {
-        sms += 0.75;
-        total += 0.75;
-        console.log(sms)
+    var calcBill = txtBillinstance.calcBill(billTypeText.value);
 
-    }
+
+
 
     // //color the total based on the criteria
-    if (total >= 50) {
+    if (txtBillinstance.getTotalCost() >= 50) {
         // adding the danger class will make the text red
 
         TotalElem.classList.remove("warning");
         TotalElem.classList.add("danger");
-    } else if (total >= 30) {
+    } else
+    if (txtBillinstance.getTotalCost() >= 30) {
         TotalElem.classList.add("warning");
         TotalElem.classList.remove("danger");
     }
     //update the totals that is displayed on the screen.
-    callsTotalElem.innerHTML = call.toFixed(2);
-    smsTotalElem.innerHTML = sms.toFixed(2);
-    TotalElem.innerHTML = total.toFixed(2);
+    callsTotalElem.innerHTML = txtBillinstance.getcallCost().toFixed(2);
+    smsTotalElem.innerHTML = txtBillinstance.getsmsCost().toFixed(2);
+    TotalElem.innerHTML = txtBillinstance.getTotalCost().toFixed(2);
 
 }
 

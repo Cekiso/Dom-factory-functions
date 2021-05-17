@@ -14,21 +14,14 @@ var addRadioBtn = document.querySelector(".addRadioBtn");
 //get a reference to the 'Update settings' button
 var updateSettings1 = document.querySelector(".updateSettings");
 // create a variables that will keep track of all the settings
-var callCostSettingRef = 0;
-var smsCostSettingRef = 0;
-var warningLevelSettingRef = 0;
-var criticalLevelSettingRef = 0;
-
-// create a variables that will keep track of all three totals.
-var callCost = 0;
-var smsCost = 0;
-var total1 = 0;
+var Billinstance = BillWithSettings()
 
 updateSettings1.addEventListener('click', function() {
-    callCostSettingRef = Number(callCostSetting.value);
-    smsCostSettingRef = Number(smsCostSetting.value);
-    warningLevelSettingRef = warningLevelSetting.value;
-    criticalLevelSettingRef = Number(criticalLevelSetting.value);
+    Number(Billinstance.setCallCost(Number(callCostSetting.value)));
+    Number(Billinstance.setSmsCost(Number(smsCostSetting.value)));
+    Number(Billinstance.setWarningLevel(warningLevelSetting.value));
+    Number(Billinstance.setCriticalLevel(criticalLevelSetting.value));
+    color();
 
 });
 
@@ -37,41 +30,26 @@ function settingBill() {
     var radioReference = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
     if (radioReference) {
-        if (total1 < criticalLevelSettingRef) {
-            var billItem1 = radioReference.value
-
-            if (billItem1 === "call") {
-                callCost += callCostSettingRef;
-                total1 += callCostSettingRef
-            } else if (billItem1 === "sms") {
-                smsCost += smsCostSettingRef;
-                total1 += smsCostSettingRef;
-            }
-        }
+        Billinstance.calcBill(radioReference.value);
     }
 
-    total1 = callCost + smsCost;
+    // total1 = callCost + smsCost;
 
-    callTotalSettings.innerHTML = callCost.toFixed(2);
-    smsTotalSettings.innerHTML = smsCost.toFixed(2);
-    totalSettings.innerHTML = total1.toFixed(2);
-    color(total1);
+    callTotalSettings.innerHTML = Billinstance.getCallCost().toFixed(2);
+    smsTotalSettings.innerHTML = Billinstance.getSmsCost().toFixed(2);
+    totalSettings.innerHTML = Billinstance.getTotalCost().toFixed(2);
+    color();
 }
 
 addRadioBtn.addEventListener('click', settingBill);
 
 function color() {
-    if (total1 < warningLevelSettingRef) {
-        totalSettings.classList.remove("danger")
-        totalSettings.classList.remove("warning")
-    } else if (total1 >= warningLevelSettingRef && total1 < criticalLevelSettingRef) {
-        totalSettings.classList.remove("danger");
-        totalSettings.classList.add("warning");
-    } else if (total1 >= criticalLevelSettingRef) {
-        totalSettings.classList.add("danger")
-        totalSettings.classList.remove("warning")
-    }
+    totalSettings.classList.remove('warning');
+    totalSettings.classList.remove('danger');
+    totalSettings.classList.add(Billinstance.totalClassName());
+
 }
+
 
 
 //add an event listener for when the 'Update settings' button is pressed

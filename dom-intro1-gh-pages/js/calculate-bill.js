@@ -15,33 +15,20 @@ var billStringElement = document.querySelector(".billString");
 //link the function to a click event on the calculate button
 
 function calculateBtnClicked() {
-    // get the string entered in the textArea
-    var billString = billStringElement.value;
-    //split the string
-    var billItems = billString.split(",");
-    // a variable for the total phone bill.
-    var billTotal = 0;
-    //loop over all the bill items
-    for (var i = 0; i < billItems.length; i++) {
-        var billItem = billItems[i].trim();
-        if (billItem === "call") {
-            billTotal += 2.75;
+    var totalBillinstance = totalBill(billStringElement.value);
 
-        } else if (billItem === "sms") {
-            billTotal += 0.75;
-        }
-    }
+    billTotalElement.innerHTML = totalBillinstance.toFixed(2);
 
     //round to two decimals
-    var roundedBillTotal = billTotal.toFixed(2);
-    billTotalElement.innerHTML = roundedBillTotal;
+    // var roundedBillTotal = billTotal.toFixed(2);
+    // billTotalElement.innerHTML = roundedBillTotal;
     // console.log(roundedBillTotal)
 
-    if (roundedBillTotal >= 30) {
+    if (totalBillinstance >= 30) {
         billTotalElement.classList.remove("warning");
         billTotalElement.classList.add("danger");
 
-    } else if (roundedBillTotal >= 20) {
+    } else if (totalBillinstance >= 20) {
         billTotalElement.classList.add("warning");
         billTotalElement.classList.remove("danger");
     } else {

@@ -44,9 +44,7 @@ function txtBill() {
         getsmsCost,
         getTotalCost,
         TotalCost,
-        // setcallCost,
-        // setsmsCost,
-        // setTotalCost,
+
         calcBill
     }
 }
