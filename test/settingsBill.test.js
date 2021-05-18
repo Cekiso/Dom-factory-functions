@@ -153,7 +153,7 @@ describe('use values', function() {
             settingsBill.makeCall();
 
 
-            assert.equal('critical', settingsBill.totalClassName());
+            assert.equal('warning', settingsBill.totalClassName());
 
 
         });
