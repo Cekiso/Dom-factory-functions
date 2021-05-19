@@ -28,11 +28,11 @@ updateSettings1.addEventListener('click', function() {
 //fuction
 function settingBill() {
     var radioReference = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-
-    if (radioReference) {
-        Billinstance.calcBill(radioReference.value);
+    if (Billinstance.getTotalCost() < Billinstance.getCriticalLevel()) {
+        if (radioReference) {
+            Billinstance.calcBill(radioReference.value);
+        }
     }
-
     // total1 = callCost + smsCost;
 
     callTotalSettings.innerHTML = Billinstance.getCallCost().toFixed(2);

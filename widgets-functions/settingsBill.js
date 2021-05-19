@@ -81,7 +81,7 @@ function BillWithSettings() {
 
     function totalClassName() {
         if (hasReachedCriticalLevel()) {
-            return 'critical'
+            return 'danger'
         }
 
 
@@ -109,7 +109,7 @@ function BillWithSettings() {
         calcBill,
         sendSms,
 
-        totalClassName,
+        totalClassName
 
     }
 }
