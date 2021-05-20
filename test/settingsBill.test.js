@@ -170,7 +170,7 @@ describe('use values', function() {
             settingsBill.makeCall();
 
 
-            assert.equal('critical', settingsBill.totalClassName());
+            assert.equal('danger', settingsBill.totalClassName());
 
 
         });
@@ -189,8 +189,8 @@ describe('use values', function() {
             settingsBill.makeCall();
 
 
-            assert.equal('critical', settingsBill.totalClassName());
-            assert.equal('critical', settingsBill.totalClassName());
+            assert.equal('danger', settingsBill.totalClassName());
+            assert.equal('danger', settingsBill.totalClassName());
 
 
         });
@@ -209,14 +209,14 @@ describe('use values', function() {
             settingsBill.makeCall();
 
 
-            assert.equal('critical', settingsBill.totalClassName());
+            assert.equal('danger', settingsBill.totalClassName());
 
 
             settingsBill.setWarningLevel(20);
-            assert.equal('critical', settingsBill.totalClassName());
+            assert.equal('danger', settingsBill.totalClassName());
             settingsBill.makeCall();
             settingsBill.makeCall();
-            assert.equal('critical', settingsBill.totalClassName());
+            assert.equal('danger', settingsBill.totalClassName());
 
         });
     });

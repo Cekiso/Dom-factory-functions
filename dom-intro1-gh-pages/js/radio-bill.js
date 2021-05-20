@@ -20,6 +20,8 @@ var radioBillinstance = txtBill();
 
 function radioBillTotal() {
 
+
+
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     if (checkedRadioBtn) {
 
