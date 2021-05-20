@@ -16,7 +16,7 @@ var totalBillTotal = 0;
 // * display the latest total on the screen
 
 
-var radioBillinstance = txtBill();
+var radioBillinstance = radioBill();
 
 function radioBillTotal() {
 
