@@ -14,7 +14,10 @@ var addRadioBtn = document.querySelector(".addRadioBtn");
 //get a reference to the 'Update settings' button
 var updateSettings1 = document.querySelector(".updateSettings");
 // create a variables that will keep track of all the settings
-var Billinstance = BillWithSettings()
+
+
+
+var Billinstance = BillWithSettings();
 
 updateSettings1.addEventListener('click', function() {
     Number(Billinstance.setCallCost(Number(callCostSetting.value)));
@@ -35,8 +38,8 @@ function settingBill() {
     }
     // total1 = callCost + smsCost;
 
-    callTotalSettings.innerHTML = Billinstance.getCallCost().toFixed(2);
-    smsTotalSettings.innerHTML = Billinstance.getSmsCost().toFixed(2);
+    callTotalSettings.innerHTML = Billinstance.getTotalCallCost().toFixed(2);
+    smsTotalSettings.innerHTML = Billinstance.getTotalSmsCost().toFixed(2);
     totalSettings.innerHTML = Billinstance.getTotalCost().toFixed(2);
     color();
 }
